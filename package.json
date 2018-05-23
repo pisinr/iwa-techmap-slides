@@ -7,8 +7,9 @@
   "main": "js/reveal.js",
   "scripts": {
     "test": "grunt test",
-    "start": "grunt serve",
-    "build": "grunt"
+    "start": "grunt --verbose serve",
+    "build": "grunt",
+    "uml": "grunt --verbose plantuml"
   },
   "author": {
     "name": "Hakim El Hattab",
@@ -33,8 +34,9 @@
     "grunt-contrib-qunit": "~1.2.0",
     "grunt-contrib-uglify": "^2.3.0",
     "grunt-contrib-watch": "^1.0.0",
-    "grunt-sass": "^2.0.0",
+    "grunt-plantuml": "^1.0.0",
     "grunt-retire": "^1.0.7",
+    "grunt-sass": "^2.0.0",
     "grunt-zip": "~0.17.1",
     "mustache": "^2.3.0",
     "socket.io": "^1.7.3"

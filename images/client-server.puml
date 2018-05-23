@@ -1,0 +1,28 @@
+Server Client.
+
+@startuml
+title Client-Server
+left to right direction
+
+actor :User: as User
+agent "Mobile App" as MobileApp
+agent "Browser" as Browser
+
+cloud "Servers" {
+  interface "API" as DataApi
+  interface "HTML/JS/CSS/IMGs" as HTML
+  artifact "Application Servers" as AppServer
+}
+
+User -- MobileApp
+User -- Browser
+
+MobileApp --( DataApi
+Browser --( DataApi
+Browser --( HTML
+
+DataApi -- AppServer
+HTML -- AppServer
+
+
+@enduml

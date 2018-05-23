@@ -1,0 +1,17 @@
+@startuml
+
+left to right direction
+
+frame "Server" as Server
+frame "Browser" as Browser {
+    agent "DOM/CSS/Browser Engine" as DOM
+    agent "Javascript" as JS
+}
+
+DOM <-- Server : Assets (HTML/JS/CSS/IMGs)
+JS <-- Server : API
+
+DOM <- JS
+DOM -> JS
+
+@enduml

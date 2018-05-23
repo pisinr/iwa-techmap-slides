@@ -64,6 +64,13 @@ module.exports = function(grunt) {
 			}
 		},
 
+		plantuml: {
+			all: {
+				src: ['images/*.puml'],
+				dest: 'images/'
+			}
+		},
+
 		jshint: {
 			options: {
 				curly: false,
@@ -141,6 +148,10 @@ module.exports = function(grunt) {
 			markdown: {
 				files: root.map(path => path + '/*.md')
 			},
+			plantuml: {
+				files: ['images/*.puml'],
+				tasks: 'plantuml'
+			},
 			options: {
 				livereload: true
 			}
@@ -164,9 +175,10 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks( 'grunt-retire' );
 	grunt.loadNpmTasks( 'grunt-sass' );
 	grunt.loadNpmTasks( 'grunt-zip' );
-	
+	grunt.loadNpmTasks('grunt-plantuml');
+
 	// Default task
-	grunt.registerTask( 'default', [ 'css', 'js' ] );
+	grunt.registerTask( 'default', [ 'plantuml', 'css', 'js' ] );
 
 	// JS task
 	grunt.registerTask( 'js', [ 'jshint', 'uglify', 'qunit' ] );

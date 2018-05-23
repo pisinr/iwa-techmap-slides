@@ -24,8 +24,18 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+					<section>
+						<img src="/images/iwa.png">
+						<h3>Terminology and Technology of today's development</h3>
+					</section>
+					<section data-markdown="overviews.md"
+						data-separator-vertical="\n\^\^\^\n"
+						data-charset="utf-8">
+					</section>
+					<section data-markdown="browsers.md"
+						data-separator-vertical="\n\^\^\^\n"
+						data-charset="utf-8">
+					</section>
 			</div>
 		</div>
 
@@ -41,7 +51,10 @@
 					{ src: 'plugin/markdown/marked.js' },
 					{ src: 'plugin/markdown/markdown.js' },
 					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+					{ src: 'plugin/highlight/highlight.js', async: true,
+						callback: function() { hljs.initHighlightingOnLoad(); }
+					},
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
 				]
 			});
 		</script>
