@@ -77,9 +77,37 @@ query {
 
 * THIS IS COMPLETELY DIFFERENT THING
 * It's not even related to REST or GraphQL!?!
+* But I don't know where to put it.
+
+^^^
+
 * Allow keeping the connection alive
 * Allow server to push response to client
+* Data is sent in "frame".
 * Good for real time application
 * Still not easy to scale.
 * GraphQL subscription even runs on WebSocket
-* But I don't know where to put it.
+
+---
+
+## JWT
+
+* Another thing I don't know where to put.
+* It's a explicit cookies.
+* It's not tied to a domain.
+* It's stateless
+
+[JWT](https://jwt.io/)
+
+^^^
+
+## So what is it?
+
+* JSON object with signed checksum.
+* Server can store data there and give it to clients.
+* It's signed. They can't modify it.
+* You don't need to hit database to trust that data.
+
+^^^
+
+If you have to hit "User" DB on every request, you don't gain much from JWT.
