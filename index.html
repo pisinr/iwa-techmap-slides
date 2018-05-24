@@ -9,6 +9,8 @@
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/black.css">
 
+		<link rel="stylesheet" href="css/style.css">
+
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
 
@@ -36,6 +38,17 @@
 						data-separator-vertical="\n\^\^\^\n"
 						data-charset="utf-8">
 					</section>
+					<section data-markdown="browser-ui.md"
+						data-separator-vertical="\n\^\^\^\n"
+						data-charset="utf-8">
+					</section>
+					<section data-markdown="browser-css.md"
+						data-separator-vertical="\n\^\^\^\n"
+						data-charset="utf-8">
+					</section>
+					<section>
+						<h1>That's all</h1>
+					</section>
 			</div>
 		</div>
 
@@ -47,6 +60,7 @@
 			// - https://github.com/hakimel/reveal.js#configuration
 			// - https://github.com/hakimel/reveal.js#dependencies
 			Reveal.initialize({
+				slideNumber: true,
 				dependencies: [
 					{ src: 'plugin/markdown/marked.js' },
 					{ src: 'plugin/markdown/markdown.js' },

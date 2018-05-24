@@ -1,28 +1,43 @@
 Server Client.
 
 @startuml
-title Client-Server
 left to right direction
 
-actor :User: as User
 agent "Mobile App" as MobileApp
 agent "Browser" as Browser
+agent "API Client" as APIClient
 
-cloud "Servers" {
+cloud "Servers" as Servers {
   interface "API" as DataApi
   interface "HTML/JS/CSS/IMGs" as HTML
-  artifact "Application Servers" as AppServer
+  agent "Application Servers" as AppServer
+  database "Storage" as Storage
 }
 
-User -- MobileApp
-User -- Browser
+cloud "Clouds" as Clouds {
+  interface "Authentication" as CloudAuth
+  interface "Push Notification" as CloudPush
+}
+
+frame "Development" as Development
+
+Development --> Servers
 
 MobileApp --( DataApi
+MobileApp -- Clouds
+
 Browser --( DataApi
 Browser --( HTML
+Browser -- Clouds
+
+APIClient --( DataApi
+APIClient -- Clouds
 
 DataApi -- AppServer
 HTML -- AppServer
+
+Servers -- Clouds
+AppServer -- Storage
 
 
 @enduml

@@ -1,0 +1,22 @@
+@startuml
+
+left to right direction
+
+frame "Development" as Development {
+    agent "JS, TypeScript, \n CoffeeScript, Dart" as Code
+    agent "Compilers" as Transpiler
+}
+frame "Server" as Server {
+    agent "JS" as JS
+    agent "Source Map" as SourceMap
+}
+agent "Browser" as Browser
+
+Code --> Transpiler
+Transpiler --> JS
+Transpiler --> SourceMap
+
+JS --> Browser
+SourceMap --> Browser
+
+@enduml

@@ -1,0 +1,8 @@
+.slide .split-row {
+    display: flex;
+}
+
+.slide .split-row .col {
+    flex: 1;
+    margin: 20px;
+}

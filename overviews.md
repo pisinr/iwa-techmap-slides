@@ -19,9 +19,12 @@
 ## Features
 * I18N/L10N
 * A11Y
+* Responsiveness
 * Animation
 * Security
-* GDPR
+* Privacy
+* Connectivity
+* Scalability
 
 ^^^
 
@@ -38,10 +41,16 @@
 
 To talk about as many of that as possible.
 
-__\* Only the surface of it though.__
+<small>*Only the surface of it, though.</small>
 
 ---
 
 # Why?
-* We have multiple team working on a single project.
-* Knowing what you don't know is the first step
+* Putting Team on the same page
+* Starting exploration point
+
+---
+
+<!-- .element: style="padding: 0" -->
+
+![system overview](images/client-server.png) <!-- .element: style="margin: 0;" -->

@@ -1,105 +1,30 @@
-The diagram can be generated using PlantUML.
+Server Client.
 
 @startuml
+title Everything
+left to right direction
 
-title Sakani Platform
+actor :User: as User
+agent "Mobile App" as MobileApp
+agent "Browser" as Browser
 
-actor :Developer: as Developer
-
-rectangle "public accessible layer" {
-
-  folder "SAKANI.PUBLIC.URL (nginx)" as WebUI {
-    frame "static files" {
-      interface "/" as WebUIRootUrl
-      node "sakani-admin (jsbundle)" as SakaniAdmin
-      SakaniAdmin -- WebUIRootUrl
-    }
-    frame "proxy" as WebUIApi {
-      interface "/auth" as WebUIAuthUrl
-      interface "/assets-api" as WebUIAssetsUrl
-      interface "/projects-api" as WebUIProjectsUrl
-      interface "/unit-categories-api" as WebUIUnitCatsUrl
-    }
-  }
-
-  folder "SAKANI.PUBLIC.STORAGE.URL" as AssetsPublic {
-    storage "sakani-assets (minio)" as Minio
-  }
+cloud "Servers" {
+  interface "HTTP" as HTTP
+  agent "Application Server" as Server
 }
 
-
-rectangle "internal intermediary layer" as MiddleLayer {
-
-  folder "sakani-authentication-service (REST)" as Auth {
-    interface "/api/v1" as AuthAPI
-    file "Login\nPage" as AuthLoginPage
-  }
-
-  folder "sakani-assets\n-intermediary (REST)" as AssetsInt {
-    interface "/" as AssetsIntAPI
-  }
-
-  folder "sakani-projects\n-intermediary (REST)" as ProjectsInt {
-    interface "/" as ProjectsIntAPI
-  }
-
-  folder "sakani-unit-categories\n-intermediary (REST)" as UnitCatsInt {
-    interface "/" as UnitCatsIntAPI
-  }
-
+cloud "Cloud" {
+  agent "Push" as Google
+  agent "Authentication" as Google
 }
 
-rectangle "internal data store layer" as DataLayer {
+User -- MobileApp
+User -- Browser
 
-  folder "sakani-assets-api (REST)" as AssetsCore {
-    interface "/assets-api" as AssetsCoreAPI
-  }
+Server -->
 
-  folder "sakani-projects-graphql" as ProjectsCore {
-    interface "/projects-api" as ProjectsCoreAPI
-    control "sidekiq" as ProjectsSidekiq
-    card IwaApina
-  }
+MobileApp --( HTTP : HTTP/WS
 
-  database "LDAP" as LDAP
 
-  folder "database (PostgreSQL)" as Database {
-    database "sakani_projects" as ProjectsDB
-    database "sakani_unit_categories" as UnitsDB
-  }
-
-  database redis as Redis
-
-  folder mongodb as MongoDB {
-    database "sakani-assets" as AssetsDB
-  }
-}
-
-Developer -- WebUI
-Developer -- AssetsPublic
-
-Auth -- LDAP
-
-SakaniAdmin --( WebUIAuthUrl
-SakaniAdmin --( WebUIAssetsUrl
-SakaniAdmin --( WebUIProjectsUrl
-SakaniAdmin --( WebUIUnitCatsUrl
-
-WebUIAuthUrl --( AuthAPI : JWT Token
-WebUIAuthUrl -- AuthLoginPage
-
-WebUIAssetsUrl --( AssetsIntAPI
-WebUIProjectsUrl --( ProjectsIntAPI
-WebUIUnitCatsUrl --( UnitCatsIntAPI
-
-AssetsInt --( AssetsCoreAPI
-ProjectsInt --( ProjectsCoreAPI
-
-AssetsCore -- AssetsDB
-AssetsCore --> Minio : Upload to
-
-ProjectsCore -- ProjectsDB
-
-ProjectsSidekiq )-- Redis
 
 @enduml
